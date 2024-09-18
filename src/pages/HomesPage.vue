@@ -46,7 +46,7 @@ async function deleteHome(homeId) {
           <div class="col-md-8 p-3">
             <h2>{{ home.year }} Home with {{ home.bedrooms }} Bedroom {{ home.bathrooms }} Bath</h2>
             <h4>{{ home.description }}</h4>
-            <h4>Created: {{ home.createdAt }}</h4>
+            <h4>Created by {{ home.creator.name }} {{ home.createdAt }}</h4>
             <div>
               <button @click="deleteHome(home.id)" class="btn btn-danger" type="button">Delete Home</button>
             </div>

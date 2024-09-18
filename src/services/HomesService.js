@@ -5,11 +5,21 @@ import { AppState } from "@/AppState.js";
 import { Home } from "@/models/Home.js";
 
 class HomesService {
-  deleteHome(homeId) {
- logger.log('Deleting', homeId)
-  }
 
-  async getHomes(){
+ async deleteHome(homeId) {
+  try {
+    const response = await api.delete(`api/houses/${homeId}`)
+    logger.log('Deleting', response.data)    
+    const homeIndex = AppState.cars.findIndex(home => home.id == homeId)
+    AppState.homes.slice(homeIndex, 1)
+  }
+  catch (error){
+    Pop.meow(error);
+    logger.log(error)    
+  }
+}
+
+async getHomes(){
     try {
       const response = await api.get('/api/houses')
       logger.log(response.data)
