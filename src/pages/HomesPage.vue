@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { homesService } from '@/services/HomesService.js';
+import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 
@@ -16,6 +17,16 @@ async function getHomes() {
   }
   catch (error) {
     Pop.meow(error);
+  }
+}
+
+async function deleteHome(homeId) {
+  try {
+    await homesService.deleteHome(homeId)
+  }
+  catch (error) {
+    Pop.meow(error)
+    logger.log(error)
   }
 }
 
@@ -36,6 +47,9 @@ async function getHomes() {
             <h2>{{ home.year }} Home with {{ home.bedrooms }} Bedroom {{ home.bathrooms }} Bath</h2>
             <h4>{{ home.description }}</h4>
             <h4>Created: {{ home.createdAt }}</h4>
+            <div>
+              <button @click="deleteHome(home.id)" class="btn btn-danger" type="button">Delete Home</button>
+            </div>
           </div>
         </div>
       </div>

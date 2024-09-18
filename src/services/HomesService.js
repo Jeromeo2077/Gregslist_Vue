@@ -5,6 +5,9 @@ import { AppState } from "@/AppState.js";
 import { Home } from "@/models/Home.js";
 
 class HomesService {
+  deleteHome(homeId) {
+ logger.log('Deleting', homeId)
+  }
 
   async getHomes(){
     try {
