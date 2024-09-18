@@ -8,8 +8,8 @@ export class Home {
     this.year = data.year
     this.price = data.price
     this.description = data.description
-    this.createdAt = new Date(data.createdAt).toLocaleDateString
-    this.updatedAt = new Date(data.updatedAt).toLocaleDateString
+    this.createdAt = new Date(data.createdAt).toLocaleDateString()
+    this.updatedAt = new Date(data.updatedAt).toLocaleDateString()
     this.creator = data.creator
   }
 }
